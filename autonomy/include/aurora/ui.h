@@ -178,6 +178,8 @@ void robot_ui::update(int keys[],const robot_base &robot) {
 
 	head_extend=0.0;
 
+	power.torqueControl=true; // no encoders on 2019 bot
+
 
 	static bool joyDrive=false;
 	bool joyDone=false; // subtle:
@@ -209,6 +211,8 @@ void robot_ui::update(int keys[],const robot_base &robot) {
 		description += "  joystick\n";
 	}
 	joyDrive=!joyDone;
+
+#if 0 /* KID MODE: buttons do nothing */
 	if(js_button(1,"state_mine"))
 	{
 		robotState_requested=state_mine;
@@ -238,7 +242,7 @@ void robot_ui::update(int keys[],const robot_base &robot) {
 
 
 	if ((js_button_once(1,"Break"))) { stop(); } // stop without changing state
-
+#endif
 
 //Pilot warning messages:
 
