@@ -114,13 +114,16 @@ void robot_display_setup(const robot_base &robot) {
 
 	// Encode current robot state in background color:
 	if (robot.state==state_STOP) {
-		glClearColor(0.7,0.0,0.0,0.0); // bright red (STOP sign)
+		glClearColor(0.0,0.6,0.9,0.0); // peaceful sky blue-green (safe to approach)
+	}
+	else if (robot.state==state_backend_driver) {
+		glClearColor(0.4,0.4,0.1,0.0); // backend drive: dim yellow
 	}
 	else if (robot.state==state_drive) {
-		glClearColor(0.3,0.3,0.3,0.0); // drive: dim gray
+		glClearColor(0.8,0.8,0.1,0.0); // drive: bright yellow
 	}
 	else {
-		glClearColor(0.1,0.2,0.4,0.0); // blue autonomy
+		glClearColor(0.8,0.1,0.0,0.0); // danger red: full autonomy
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT+GL_DEPTH_BUFFER_BIT);
